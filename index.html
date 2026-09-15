@@ -294,7 +294,7 @@
             </div>
 
             <!-- Netlify Form Integration -->
-            <form name="jaden-puds-shop" method="POST" netlify onsubmit="prepareOrder()"><form name="jaden-puds-shop" method="POST" data-netlify="true" action="/" onsubmit="prepareOrder()">
+           <form name="jaden-puds-shop" method="POST" data-netlify="true" action="/" onsubmit="prepareOrder(event)">
                 <input type="hidden" id="hidden-order-summary" name="order_summary">
 
                 <div class="form-group">
@@ -352,7 +352,7 @@
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
-    <script>
+<script>
         let cart = [];
 
         function addToCart(name, price) {
@@ -368,11 +368,14 @@
         function renderCart() {
             const cartList = document.getElementById('cart-items');
             const totalSpan = document.getElementById('cart-total');
+            const hiddenSummary = document.getElementById('hidden-order-summary');
+            
             cartList.innerHTML = '';
 
             if (cart.length === 0) {
                 cartList.innerHTML = '<li>Your cart is empty. Click an item above to add!</li>';
                 totalSpan.innerText = '0';
+                hiddenSummary.value = ''; 
                 return;
             }
 
@@ -383,18 +386,19 @@
                 li.innerHTML = `<span>${item.name} - ₱${item.price}</span> <button type="button" class="remove-btn" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button>`;
                 cartList.appendChild(li);
             });
+            
             totalSpan.innerText = total;
+
+            // Instantly updates the Netlify form field!
+            const summaryText = cart.map(item => `${item.name} (₱${item.price})`).join(', ');
+            hiddenSummary.value = `Items: [ ${summaryText} ] | Total Price: ₱${total}`;
         }
 
-        function prepareOrder() {
+        function prepareOrder(event) {
             if (cart.length === 0) {
-                alert('Your cart is empty! Please select a treat first.');
-                event.preventDefault();
-                return;
+                alert('Your cart is empty! Please select a treat first. 🎀');
+                event.preventDefault(); 
             }
-            const summary = cart.map(item => `${item.name} (₱${item.price})`).join(', ');
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('hidden-order-summary').value = `Items: [ ${summary} ] | Total Price: ₱${total}`;
         }
     </script>
 </body>
