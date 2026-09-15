@@ -1,0 +1,266 @@
+/* ==========================================
+   1. IMPORT FONTS & VARIABLES
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text-primary: #5c5346;
+    --text-muted: #8b8072;
+    --accent-matcha: #92a373;
+    --accent-matcha-hover: #7a8a5f;
+    --accent-pink-border: #ffdde6;
+    --card-bg: #ffffff;
+    --shadow-soft: 0 10px 30px rgba(146, 163, 115, 0.15);
+    --shadow-hover: 0 15px 35px rgba(244, 194, 194, 0.4);
+    --radius-main: 20px;
+}
+
+body {
+    /* Beautiful soft diagonal gradient instead of flat yellow */
+    background: linear-gradient(135deg, #fdfbe2 0%, #fff0f5 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif; /* Clean, modern body font */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Elegant Heading Font */
+h1, h2, h3, .brand-title, .section-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ==========================================
+   2. HEADER & FLOATING LOGO
+   ========================================== */
+.header {
+    text-align: center;
+    padding: 60px 20px 35px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* The Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+.logo {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #ffffff;
+    box-shadow: 0 12px 25px rgba(146, 163, 115, 0.3);
+    margin-bottom: 20px;
+    animation: float 4s ease-in-out infinite; /* Applies the float */
+}
+
+.brand-title {
+    font-size: 42px;
+    color: var(--accent-matcha);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05); /* Soft text shadow */
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 17px;
+    color: #d19ba8;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   3. CONTENT LAYOUT CONTAINERS
+   ========================================== */
+.section-container {
+    max-width: 950px;
+    margin: 0 auto 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.section-title {
+    color: var(--accent-matcha);
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: inline-block;
+    border-bottom: 2px dashed #d19ba8; /* Pink dashed underline */
+    padding-bottom: 8px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.full-width-img {
+    width: 100%;
+    max-width: 620px;
+    border-radius: var(--radius-main);
+    box-shadow: var(--shadow-soft);
+    margin: 0 auto;
+    border: 4px solid #ffffff;
+}
+
+/* ==========================================
+   4. POLAROID GRIDS (DESKTOP & TABLET)
+   ========================================== */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 35px;
+}
+
+/* Polaroid Card Effect */
+.product-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 12px 12px 40px 12px; /* Extra padding at bottom like a polaroid */
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Alternating tilts for a scattered look */
+.product-card:nth-child(1) { transform: rotate(-2deg); }
+.product-card:nth-child(2) { transform: rotate(1deg); }
+.product-card:nth-child(3) { transform: rotate(-1deg); }
+
+.product-card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+/* Zoom and straighten on hover */
+.product-card:hover {
+    transform: translateY(-10px) rotate(0deg) scale(1.05);
+    box-shadow: var(--shadow-hover);
+    z-index: 10;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.info-grid img {
+    width: 100%;
+    border-radius: var(--radius-main);
+    box-shadow: var(--shadow-soft);
+    border: 5px solid #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.info-grid img:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ==========================================
+   5. FLOATING MESSENGER CTA
+   ========================================== */
+.messenger-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-matcha);
+    color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 20px rgba(146, 163, 115, 0.4);
+    border: 3px solid #ffffff;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.messenger-btn:hover {
+    background-color: var(--accent-matcha-hover);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(146, 163, 115, 0.6);
+}
+
+/* ==========================================
+   6. FOOTER & SOCIAL LINKS
+   ========================================== */
+footer {
+    text-align: center;
+    padding: 40px 20px 80px 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.social-links {
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    color: #d19ba8; /* Soft dusty pink to match the tagline */
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px;
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-matcha);
+    text-decoration: underline;
+}
+
+/* ==========================================
+   7. MOBILE RESPONSIVE OPTIMIZATION
+   ========================================== */
+@media (max-width: 768px) {
+    .header { padding: 40px 15px 25px 15px; }
+    .logo { width: 170px; height: 170px; }
+    .brand-title { font-size: 32px; }
+    .section-title { font-size: 26px; }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 25px auto 0 auto;
+        gap: 30px;
+    }
+    
+    .product-card:nth-child(n) { transform: rotate(0deg); }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+    }
+
+    .messenger-btn {
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+        width: calc(100% - 40px);
+        max-width: 340px;
+        text-align: center;
+        padding: 15px;
+    }
+    .messenger-btn:hover {
+        transform: translateX(50%) translateY(-3px);
+    }
+}
