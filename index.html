@@ -412,6 +412,8 @@
                 alert('Your cart is empty! Please select a treat first. 🎀');
                 event.preventDefault(); 
             }
+        } // <-- THIS is the bracket that was missing! It closes prepareOrder.
+
         function toggleGCash() {
             const paymentMethod = document.getElementById('payment').value;
             const gcashBox = document.getElementById('gcash-box');
@@ -424,7 +426,6 @@
                 gcashBox.style.display = "none";
                 proofInput.required = false; // Not required for meet-ups
             }
-        }
         }
     </script>
 </body>
