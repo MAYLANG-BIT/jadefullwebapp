@@ -54,7 +54,28 @@
         .support-text {
             font-size: 14px;
             color: #8b8072;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
+        }
+
+        /* NEW CELEBRATE BUTTON */
+        .celebrate-btn {
+            background-color: #d19ba8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(209, 155, 168, 0.4);
+        }
+
+        .celebrate-btn:hover {
+            background-color: #b8828f;
+            transform: scale(1.05);
         }
 
         .back-btn {
@@ -81,15 +102,23 @@
         
         <p class="support-text">(Plus, when you buy from a small business, an actual person does a little happy dance. 🎀)</p>
         
+        <!-- THE INTERACTIVE SOUND BUTTON -->
+        <button class="celebrate-btn" onclick="playSuccessSound()">Tap to Celebrate! 🎉</button>
+        <br>
         <a href="/" class="back-btn">Head Back to Shop</a>
     </div>
-    <!-- Add this right before </body> -->
+
+    <!-- JAVASCRIPT FOR THE AUDIO -->
     <script>
-        window.onload = function() {
-            let successSound = new Audio('ding.mp3');
-            successSound.play();
+        // Pre-load the sound
+        const successSound = new Audio('ding.mp3');
+
+        function playSuccessSound() {
+            successSound.currentTime = 0; // Resets sound to start
+            successSound.play().catch(function(error) {
+                console.log("Audio blocked: ", error);
+            });
         }
     </script>
-
 </body>
 </html>
