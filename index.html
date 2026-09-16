@@ -412,6 +412,19 @@
                 alert('Your cart is empty! Please select a treat first. 🎀');
                 event.preventDefault(); 
             }
+        function toggleGCash() {
+            const paymentMethod = document.getElementById('payment').value;
+            const gcashBox = document.getElementById('gcash-box');
+            const proofInput = document.getElementById('proof');
+
+            if (paymentMethod === "GCash") {
+                gcashBox.style.display = "block";
+                proofInput.required = true; // Forces them to upload a picture to proceed
+            } else {
+                gcashBox.style.display = "none";
+                proofInput.required = false; // Not required for meet-ups
+            }
+        }
         }
     </script>
 </body>
